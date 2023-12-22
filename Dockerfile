@@ -8,7 +8,7 @@ RUN python3 -m venv /opt/venv
 
 COPY requirements.txt /app/requirements.txt
 
-RUN /opt/venv/bin/pip install -r requirements.txt && \
+RUN /opt/venv/bin/pip install -r requirements.txt
 
 COPY . .
 
