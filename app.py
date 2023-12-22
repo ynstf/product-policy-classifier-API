@@ -72,9 +72,15 @@ def predict(text_str, max_sequence=max_sequence, tokenizer=None, model=None, lab
 class InputData(BaseModel):
     data: str
 
+@app.get("/")
+def welcome():
+
+    return JSONResponse("welcome")
+
 @app.post("/predict")
 def predicting(data: InputData):
     data = data.data
     print(data)
     prediction, x = predict(str(data), tokenizer=tokenizer, model=model, labels_legend_inverted=labels_legend_inverted)
-    return JSONResponse(content={"prediction": prediction})
+    print(prediction, x)
+    return JSONResponse(content={"prediction": prediction,"precision":x[prediction]})
