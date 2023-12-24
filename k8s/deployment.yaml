@@ -1,22 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: category
+  name: policy_model
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: category
+      app: policy_model
   template:
     metadata:
       labels:
-        app: category
+        app: policy_model
     spec:
       containers:
-        - name: category
-          image: yoness/category
-          envFrom:
-            - configMapRef:
-                name: category-configmap
+        - name: policy_model
+          image: yoness/policy_model
           ports:
-            - containerPort: 5500
+            - containerPort: 1111

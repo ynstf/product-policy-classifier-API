@@ -1,0 +1,367 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "keras",
+        "importPath": "tensorflow",
+        "description": "tensorflow",
+        "isExtraImport": true,
+        "detail": "tensorflow",
+        "documentation": {}
+    },
+    {
+        "label": "tokenizer_from_json",
+        "importPath": "tensorflow.keras.preprocessing.text",
+        "description": "tensorflow.keras.preprocessing.text",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras.preprocessing.text",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
+        "documentation": {}
+    },
+    {
+        "label": "nltk",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "nltk",
+        "description": "nltk",
+        "detail": "nltk",
+        "documentation": {}
+    },
+    {
+        "label": "PorterStemmer",
+        "importPath": "nltk.stem",
+        "description": "nltk.stem",
+        "isExtraImport": true,
+        "detail": "nltk.stem",
+        "documentation": {}
+    },
+    {
+        "label": "word_tokenize",
+        "importPath": "nltk.tokenize",
+        "description": "nltk.tokenize",
+        "isExtraImport": true,
+        "detail": "nltk.tokenize",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "pad_sequences",
+        "importPath": "tensorflow.keras.preprocessing.sequence",
+        "description": "tensorflow.keras.preprocessing.sequence",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras.preprocessing.sequence",
+        "documentation": {}
+    },
+    {
+        "label": "detect_language",
+        "importPath": "detect",
+        "description": "detect",
+        "isExtraImport": true,
+        "detail": "detect",
+        "documentation": {}
+    },
+    {
+        "label": "translate_text",
+        "importPath": "translate",
+        "description": "translate",
+        "isExtraImport": true,
+        "detail": "translate",
+        "documentation": {}
+    },
+    {
+        "label": "detect",
+        "importPath": "langdetect",
+        "description": "langdetect",
+        "isExtraImport": true,
+        "detail": "langdetect",
+        "documentation": {}
+    },
+    {
+        "label": "unittest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "unittest",
+        "description": "unittest",
+        "detail": "unittest",
+        "documentation": {}
+    },
+    {
+        "label": "TestClient",
+        "importPath": "fastapi.testclient",
+        "description": "fastapi.testclient",
+        "isExtraImport": true,
+        "detail": "fastapi.testclient",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "translators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "translators",
+        "description": "translators",
+        "detail": "translators",
+        "documentation": {}
+    },
+    {
+        "label": "InputData",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class InputData(BaseModel):\n    data: str\n@app.get(\"/\")\ndef welcome():\n    return JSONResponse(\"welcome\")\n@app.post(\"/predict\")\ndef predicting(data: InputData):\n    data = data.data\n    print(data)\n    prediction, x = predict(str(data), tokenizer=tokenizer, model=model, labels_legend_inverted=labels_legend_inverted)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "stem_text",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def stem_text(text):\n    stemmer = PorterStemmer()\n    tokens = word_tokenize(text)\n    stemmed_tokens = [stemmer.stem(word) for word in tokens]\n    stemmed_text = ' '.join(stemmed_tokens)\n    return stemmed_text\n# define the pridection function\ndef predict(text_str, max_sequence=max_sequence, tokenizer=None, model=None, labels_legend_inverted=None):\n    if not tokenizer or not model or not labels_legend_inverted:\n        return None",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def predict(text_str, max_sequence=max_sequence, tokenizer=None, model=None, labels_legend_inverted=None):\n    if not tokenizer or not model or not labels_legend_inverted:\n        return None\n    #detect language\n    text_to_translate = text_str\n    language = detect_language(text_to_translate)\n    #translate text\n    translated_text = translate_text(text_to_translate, source_lang=language , target_lang='en')\n    print(translated_text)\n    #stemming the input text",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "welcome",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def welcome():\n    return JSONResponse(\"welcome\")\n@app.post(\"/predict\")\ndef predicting(data: InputData):\n    data = data.data\n    print(data)\n    prediction, x = predict(str(data), tokenizer=tokenizer, model=model, labels_legend_inverted=labels_legend_inverted)\n    print(prediction, x)\n    return JSONResponse(content={\"prediction\": prediction,\"precision\":x[prediction]})",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "predicting",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def predicting(data: InputData):\n    data = data.data\n    print(data)\n    prediction, x = predict(str(data), tokenizer=tokenizer, model=model, labels_legend_inverted=labels_legend_inverted)\n    print(prediction, x)\n    return JSONResponse(content={\"prediction\": prediction,\"precision\":x[prediction]})",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "text_to_translate",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "text_to_translate = \"Sexual products\"\nlanguage = detect_language(text_to_translate)\ntranslated_text = translate_text(text_to_translate, source_lang=language , target_lang='en')\napp = FastAPI()\n# Load the pre-trained model\nversion = 6\nmodel_folder = f\"model_v{version}\"\nmodel = keras.models.load_model(f'{model_folder}/model.h5')\n# Load tokenizer configuration from the file\nwith open(f'{model_folder}/tokenizer_config.json', 'r') as json_file:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "language",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "language = detect_language(text_to_translate)\ntranslated_text = translate_text(text_to_translate, source_lang=language , target_lang='en')\napp = FastAPI()\n# Load the pre-trained model\nversion = 6\nmodel_folder = f\"model_v{version}\"\nmodel = keras.models.load_model(f'{model_folder}/model.h5')\n# Load tokenizer configuration from the file\nwith open(f'{model_folder}/tokenizer_config.json', 'r') as json_file:\n    tokenizer_config_str = json_file.read()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "translated_text",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "translated_text = translate_text(text_to_translate, source_lang=language , target_lang='en')\napp = FastAPI()\n# Load the pre-trained model\nversion = 6\nmodel_folder = f\"model_v{version}\"\nmodel = keras.models.load_model(f'{model_folder}/model.h5')\n# Load tokenizer configuration from the file\nwith open(f'{model_folder}/tokenizer_config.json', 'r') as json_file:\n    tokenizer_config_str = json_file.read()\n# Create a tokenizer instance using tokenizer_from_json",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = FastAPI()\n# Load the pre-trained model\nversion = 6\nmodel_folder = f\"model_v{version}\"\nmodel = keras.models.load_model(f'{model_folder}/model.h5')\n# Load tokenizer configuration from the file\nwith open(f'{model_folder}/tokenizer_config.json', 'r') as json_file:\n    tokenizer_config_str = json_file.read()\n# Create a tokenizer instance using tokenizer_from_json\ntokenizer = tokenizer_from_json(tokenizer_config_str)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "version",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "version = 6\nmodel_folder = f\"model_v{version}\"\nmodel = keras.models.load_model(f'{model_folder}/model.h5')\n# Load tokenizer configuration from the file\nwith open(f'{model_folder}/tokenizer_config.json', 'r') as json_file:\n    tokenizer_config_str = json_file.read()\n# Create a tokenizer instance using tokenizer_from_json\ntokenizer = tokenizer_from_json(tokenizer_config_str)\n#load trainig data\n# Specify the file path where you saved the data",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "model_folder",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "model_folder = f\"model_v{version}\"\nmodel = keras.models.load_model(f'{model_folder}/model.h5')\n# Load tokenizer configuration from the file\nwith open(f'{model_folder}/tokenizer_config.json', 'r') as json_file:\n    tokenizer_config_str = json_file.read()\n# Create a tokenizer instance using tokenizer_from_json\ntokenizer = tokenizer_from_json(tokenizer_config_str)\n#load trainig data\n# Specify the file path where you saved the data\npickle_file_path = f'{model_folder}/training_data.pkl'",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "model = keras.models.load_model(f'{model_folder}/model.h5')\n# Load tokenizer configuration from the file\nwith open(f'{model_folder}/tokenizer_config.json', 'r') as json_file:\n    tokenizer_config_str = json_file.read()\n# Create a tokenizer instance using tokenizer_from_json\ntokenizer = tokenizer_from_json(tokenizer_config_str)\n#load trainig data\n# Specify the file path where you saved the data\npickle_file_path = f'{model_folder}/training_data.pkl'\n# Load the training_data dictionary from the Pickle file",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "tokenizer",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "tokenizer = tokenizer_from_json(tokenizer_config_str)\n#load trainig data\n# Specify the file path where you saved the data\npickle_file_path = f'{model_folder}/training_data.pkl'\n# Load the training_data dictionary from the Pickle file\nwith open(pickle_file_path, 'rb') as pickle_file:\n    loaded_training_data = pickle.load(pickle_file)\n# Access the loaded data\nmax_words = loaded_training_data['max_words']\nmax_sequence = loaded_training_data['max_sequence']",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "pickle_file_path",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "pickle_file_path = f'{model_folder}/training_data.pkl'\n# Load the training_data dictionary from the Pickle file\nwith open(pickle_file_path, 'rb') as pickle_file:\n    loaded_training_data = pickle.load(pickle_file)\n# Access the loaded data\nmax_words = loaded_training_data['max_words']\nmax_sequence = loaded_training_data['max_sequence']\nlegend = loaded_training_data['legend']\nlabels_legend_inverted = loaded_training_data['labels_legend_inverted']\n# define the stem function",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "max_words",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "max_words = loaded_training_data['max_words']\nmax_sequence = loaded_training_data['max_sequence']\nlegend = loaded_training_data['legend']\nlabels_legend_inverted = loaded_training_data['labels_legend_inverted']\n# define the stem function\ndef stem_text(text):\n    stemmer = PorterStemmer()\n    tokens = word_tokenize(text)\n    stemmed_tokens = [stemmer.stem(word) for word in tokens]\n    stemmed_text = ' '.join(stemmed_tokens)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "max_sequence",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "max_sequence = loaded_training_data['max_sequence']\nlegend = loaded_training_data['legend']\nlabels_legend_inverted = loaded_training_data['labels_legend_inverted']\n# define the stem function\ndef stem_text(text):\n    stemmer = PorterStemmer()\n    tokens = word_tokenize(text)\n    stemmed_tokens = [stemmer.stem(word) for word in tokens]\n    stemmed_text = ' '.join(stemmed_tokens)\n    return stemmed_text",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "legend",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "legend = loaded_training_data['legend']\nlabels_legend_inverted = loaded_training_data['labels_legend_inverted']\n# define the stem function\ndef stem_text(text):\n    stemmer = PorterStemmer()\n    tokens = word_tokenize(text)\n    stemmed_tokens = [stemmer.stem(word) for word in tokens]\n    stemmed_text = ' '.join(stemmed_tokens)\n    return stemmed_text\n# define the pridection function",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "labels_legend_inverted",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "labels_legend_inverted = loaded_training_data['labels_legend_inverted']\n# define the stem function\ndef stem_text(text):\n    stemmer = PorterStemmer()\n    tokens = word_tokenize(text)\n    stemmed_tokens = [stemmer.stem(word) for word in tokens]\n    stemmed_text = ' '.join(stemmed_tokens)\n    return stemmed_text\n# define the pridection function\ndef predict(text_str, max_sequence=max_sequence, tokenizer=None, model=None, labels_legend_inverted=None):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "detect_language",
+        "kind": 2,
+        "importPath": "detect",
+        "description": "detect",
+        "peekOfCode": "def detect_language(text):\n    return detect(text)\n\"\"\"\ntext = \"Bonjour tout le monde\"\nlanguage = detect_language(text)\nprint(f\"The detected language is: {language}\")\n\"\"\"",
+        "detail": "detect",
+        "documentation": {}
+    },
+    {
+        "label": "text",
+        "kind": 5,
+        "importPath": "detect",
+        "description": "detect",
+        "peekOfCode": "text = \"Bonjour tout le monde\"\nlanguage = detect_language(text)\nprint(f\"The detected language is: {language}\")\n\"\"\"",
+        "detail": "detect",
+        "documentation": {}
+    },
+    {
+        "label": "language",
+        "kind": 5,
+        "importPath": "detect",
+        "description": "detect",
+        "peekOfCode": "language = detect_language(text)\nprint(f\"The detected language is: {language}\")\n\"\"\"",
+        "detail": "detect",
+        "documentation": {}
+    },
+    {
+        "label": "TestServer",
+        "kind": 6,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "class TestServer(unittest.TestCase):\n    def setUp(self):\n        self.client = TestClient(app)\n    def test_server_runs(self):\n        response = self.client.get('/')\n        self.assertEqual(response.status_code, 200)\n        self.assertIn(b\"welcome\", response.content.lower())\nif __name__ == '__main__':\n    unittest.main()",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "translate_text",
+        "kind": 2,
+        "importPath": "translate",
+        "description": "translate",
+        "peekOfCode": "def translate_text(text, source_lang='auto', target_lang='en'):\n    translation = ts.translate_text(text, translator=\"bing\", from_language=source_lang ,to_language=target_lang)\n    return translation",
+        "detail": "translate",
+        "documentation": {}
+    }
+]

@@ -12,10 +12,17 @@ nltk.download('punkt')  # Download the punkt tokenizer if you haven't already
 import numpy as np
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
+from detect import detect_language
+from translate import translate_text
+
+text_to_translate = "Sexual products"
+language = detect_language(text_to_translate)
+translated_text = translate_text(text_to_translate, source_lang=language , target_lang='en')
+
 app = FastAPI()
 
 # Load the pre-trained model
-version = 5
+version = 6
 model_folder = f"model_v{version}"
 model = keras.models.load_model(f'{model_folder}/model.h5')
 
@@ -52,8 +59,15 @@ def predict(text_str, max_sequence=max_sequence, tokenizer=None, model=None, lab
     if not tokenizer or not model or not labels_legend_inverted:
         return None
     
+    #detect language
+    text_to_translate = text_str
+    language = detect_language(text_to_translate)
+
+    #translate text
+    translated_text = translate_text(text_to_translate, source_lang=language , target_lang='en')
+    print(translated_text)
     #stemming the input text
-    text_str = stem_text(text_str)
+    text_str = stem_text(translated_text)
     # Tokenize the input text
     sequences = tokenizer.texts_to_sequences([text_str])
     # Pad the sequence
@@ -74,7 +88,6 @@ class InputData(BaseModel):
 
 @app.get("/")
 def welcome():
-
     return JSONResponse("welcome")
 
 @app.post("/predict")
